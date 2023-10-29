@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Ecommerce App</string>
+    <string name="wellcome">Entre com seu Email\n Para começar a comprar</string>
+    <string name="wellcome2">Agora é muito facil de comprar\n produtos de qualidade\n pela internet</string>
+    <string name="start">Comece</string>
+    <string name="registre_se">Registre-se</string>
+    <string name="login">Login</string>
+    <string name="fazerlogin">Fazer Login</string>
+    <string name="n_o_tem_conta_registre_se_agora">Não tem conta? Registre-se Agora !</string>
+    <string name="esqueceu_a_senha">Esqueceu a senha ?</string>
+</resources>

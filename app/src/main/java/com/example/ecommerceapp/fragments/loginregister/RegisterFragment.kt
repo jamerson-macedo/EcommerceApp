@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.example.ecommerceapp.R
 import com.example.ecommerceapp.data.User
 import com.example.ecommerceapp.databinding.FragmentRegisterBinding
 import com.example.ecommerceapp.util.RegisterValidation
@@ -18,7 +20,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
-class RegisterFragment() : Fragment() {
+class RegisterFragment() : Fragment(R.layout.fragment_register) {
     private lateinit var binding: FragmentRegisterBinding
     private val viewModel by viewModels<RegisterViewModel>()
     override fun onCreateView(
@@ -32,6 +34,10 @@ class RegisterFragment() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.tvWelcomme2.setOnClickListener {
+            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+        }
+
         binding.apply {
             btnRegister.setOnClickListener {
                 val user = User(

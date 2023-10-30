@@ -91,7 +91,7 @@
             app:layout_constraintStart_toStartOf="@id/guidelineleft"
             app:layout_constraintTop_toBottomOf="@id/edt_password_login" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
             android:id="@+id/btn_login"
             style="@style/blueButtonStyle"
             android:layout_width="0dp"
@@ -99,6 +99,7 @@
             android:layout_height="55dp"
             android:layout_margin="15dp"
             android:text="Login"
+            app:spinning_bar_color="@color/white"
             app:layout_constraintEnd_toEndOf="@+id/guidelineright"
             app:layout_constraintStart_toStartOf="@id/guidelineleft"
             app:layout_constraintTop_toBottomOf="@id/tv_esqueceu_senha" />

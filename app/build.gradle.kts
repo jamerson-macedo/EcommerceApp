@@ -64,7 +64,9 @@ dependencies {
     implementation ("de.hdodenhof:circleimageview:3.1.0")
     implementation ("io.github.vejei.viewpagerindicator:viewpagerindicator:1.0.0-alpha.1")
     implementation ("com.shuhart.stepview:stepview:1.5.1")
+
     implementation ("androidx.navigation:navigation-fragment-ktx:2.7.4")
+    implementation ("androidx.navigation:navigation-ui-ktx:2.7.4")
     implementation ("com.google.dagger:hilt-android:2.48")
     kapt("com.google.dagger:hilt-android-compiler:2.48")
 

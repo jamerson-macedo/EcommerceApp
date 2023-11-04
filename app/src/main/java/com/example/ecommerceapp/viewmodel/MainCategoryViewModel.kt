@@ -15,9 +15,16 @@ import javax.inject.Inject
 class MainCategoryViewModel @Inject constructor(val firestore: FirebaseFirestore) : ViewModel() {
     private val _specialProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Unspecified())
     val specialProducts: StateFlow<Resource<List<Product>>> = _specialProducts
+
+    private val _bestDeals = MutableStateFlow<Resource<List<Product>>>(Resource.Unspecified())
+    val bestdeals: StateFlow<Resource<List<Product>>> = _bestDeals
+
+    private val _bestProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Unspecified())
+    val bestProducts: StateFlow<Resource<List<Product>>> = _bestProducts
     init {
         fetchSpecialProducts()
-
+        fetchBestProducts()
+        fetchBestDeals()
     }
 
     fun fetchSpecialProducts() {
@@ -41,4 +48,49 @@ class MainCategoryViewModel @Inject constructor(val firestore: FirebaseFirestore
                 }
             }
     }
+    fun fetchBestProducts(){
+        viewModelScope.launch {
+            _specialProducts.emit(Resource.Loading())
+        }
+
+        // paso o nome da coluna + o valor
+        firestore.collection("Products").get().addOnSuccessListener { result ->
+                val specialProductObj =
+                    result.toObjects(Product::class.java)// converte o resultado num produto
+                viewModelScope.launch {
+                    _bestProducts.emit(Resource.Success(specialProductObj))
+                }
+
+
+            }.addOnFailureListener {
+                viewModelScope.launch {
+                    _bestProducts.emit(Resource.Error(it.message.toString()))
+                }
+            }
+
+    }
+    fun fetchBestDeals(){
+        viewModelScope.launch {
+            _specialProducts.emit(Resource.Loading())
+        }
+
+        // paso o nome da coluna + o valor
+        firestore.collection("Products")
+            .whereEqualTo("category", "Special estilizado").get().addOnSuccessListener { result ->
+                val specialProductObj =
+                    result.toObjects(Product::class.java)// converte o resultado num produto
+                viewModelScope.launch {
+                    _bestDeals.emit(Resource.Success(specialProductObj))
+                }
+
+
+            }.addOnFailureListener {
+                viewModelScope.launch {
+                    _bestDeals.emit(Resource.Error(it.message.toString()))
+                }
+            }
+
+    }
+
+
 }
